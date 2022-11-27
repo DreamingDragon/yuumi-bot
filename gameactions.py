@@ -1,4 +1,6 @@
 import pyautogui
+import keyboard
+import mouse
 
 #Level up an ability
 def level_up(ability):
