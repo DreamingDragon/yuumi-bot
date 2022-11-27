@@ -37,6 +37,7 @@ def use_exhaust():
 
 #Use Heal (Summoner)
 def use_heal_sum():
+  keyboard.press('D')
   
 #Use a stealth ward
 def place_stealthward():
