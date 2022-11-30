@@ -59,6 +59,7 @@ def ReleaseKey(hexKeyCode):
     ctypes.windll.user32.SendInput(1, ctypes.pointer(x), ctypes.sizeof(x))
 
 def KeyPress(key):
+    time.sleep(1)
     PressKey(key) # press 
     time.sleep(.05)
     ReleaseKey(key) #release 
