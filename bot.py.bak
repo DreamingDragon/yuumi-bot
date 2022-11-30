@@ -11,8 +11,8 @@ TOKEN = os.getenv('DISCORD_TOKEN')
 client = discord.Client()
 
 command_q = []
-command_w = ['Entr0py: Use W.', 'Entr0py: Attach to me.', 'Entr0py: Follow me.']
-command_e = ['Entr0py: Heal me.', 'Entr0py: Save me.', 'Entr0py: Use E.']
+command_w = ['Entr0py: Press w.', 'Entr0py: Attach to me.', 'Entr0py: Follow me.', 'Entr0py: Stop following.', 'Entr0py: Attach.', 'Entr0py: Detach.']
+command_e = ['Entr0py: Heal me.', 'Entr0py: Save me.', 'Entr0py: Press e.']
 
 @client.event
 async def on_ready():
@@ -23,10 +23,10 @@ async def on_message(message):
     if message.author == client.user:
         return
     
-    if message.content in command_e:
-        response = 'Pressing E'
+    if message.content in command_w:
+        response = 'Pressing W'
         await message.channel.send(response)
-        use_e()
+        use_w()
     
     if message.content in command_e:
         response = 'Pressing E'
