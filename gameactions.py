@@ -1,11 +1,13 @@
 import pyautogui as keyboard
 import time
 import ctypes
+import random
 
 R = 0x13
 E = 0x12
 W = 0x11
 Q = 0x10
+Enter = 0x1C
 
 # Bunch of stuff so that the script can send keystrokes to game #
 
@@ -115,3 +117,12 @@ def place_pinkward():
 #Use Redmeption
 def use_redemption():
   return 0
+  
+#Be Toxic
+toxic_phrases = ['GGEZ', 'Git gud', 'Sup diff', 'GG uninstall', 'EZ uninstall']
+def being_toxic():
+  KeyPress(Enter)
+  time.sleep(0.01)
+  keyboard.write(toxic_phrases[random.randint(0,4)], interval = 0.01)
+  time.sleep(0.01)
+  KeyPress(Enter)
