@@ -12,7 +12,7 @@ client = discord.Client()
 
 command_q = []
 command_w = ['Entr0py: Press W.', 'Entr0py: Attach to me.', 'Entr0py: Follow me.', 'Entr0py: Stop following.', 'Entr0py: Attach.', 'Entr0py: Detach.']
-command_e = ['Entr0py: Heal me.', 'Entr0py: Save me.', 'Entr0py: Press.', 'Entr0py: Press e.']
+command_e = ['Entr0py: Heal me.', 'Entr0py: Save me.', 'Entr0py: Press e.', 'Entr0py: Press.']
 
 @client.event
 async def on_ready():
@@ -33,9 +33,8 @@ async def on_message(message):
         await message.channel.send(response)
         use_e()
         
-    if message.content == 'Entr0py: Be toxic.':
-        response = 'Being Toxic'
-        await message.channel.send(response) 
-        being_toxic()
+    if message.content == 'Entr0py: Use Q.':
+        response = 'Pressing Q'
+        await message.channel.send(response)    
         
 client.run(TOKEN)
