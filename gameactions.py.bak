@@ -13,6 +13,22 @@ KEYS = {'R':0x13,
         'Enter':0x1C,
         'Ctrl':0x1D,
         '4':0x05}
+        
+COORD_X = 0
+COORD_Y = 1
+
+DIRECTIONS = { 'dir_one': [1400, 56],
+               'dir_two': [1730, 200],
+               'dir_three': [1919, 500],
+               'dir_four': [1730, 800],
+               'dir_five': [1400, 944],
+               'dir_six': [960, 1079],
+               'dir_seven': [520, 944],
+               'dir_eight': [193, 800],
+               'dir_nine': [0, 500],
+               'dir_ten': [195, 200],
+               'dir_eleven': [520 , 56],
+               'dir_twelve': [960, 0],}
 
 #Level up an ability
 def level_up(ability):
@@ -26,8 +42,8 @@ def level_up(ability):
   
 #Use Q
 def use_q(direction):
-  return 0
-  
+  pyautogui.moveTo(DIRECTIONS[direction][COORD_X], DIRECTIONS[direction][COORD_Y])
+  KeyPress(KEYS['Q'])
   
 #Use W (Attaching)
 def use_w_attach():
@@ -63,13 +79,15 @@ def use_w_detach():
 
 #Use E  
 def use_e():
+  center_mouse()
   KeyPress(KEYS['E'])
 
 
 #Use R  
 def use_ult(direction):
+  pyautogui.moveTo(DIRECTIONS[direction][COORD_X], DIRECTIONS[direction][COORD_Y])
   KeyPress(KEYS['R'])
-  
+  center_mouse()
   
 #Buy Items
 def go_shopping():
@@ -83,21 +101,65 @@ def recall():
 
 #Use Ignite
 def use_ignite():
-  KeyPress(KEYS['D'])
+  center_mouse()
+  k = 200
+  
+  KeyPress(KEYS['F'])
+  pyautogui.move(k, k)  #move to 9
+  KeyPress(KEYS['F'])
+  pyautogui.move(0, -k) #move to 6
+  KeyPress(KEYS['F'])
+  pyautogui.move(0, -k) #move to 3
+  KeyPress(KEYS['F'])
+  pyautogui.move(-k, 0) #move to 2
+  KeyPress(KEYS['F'])
+  pyautogui.move(-k, 0) #move to 1
+  KeyPress(KEYS['F'])
+  pyautogui.move(0, k)  #move to 4
+  KeyPress(KEYS['F'])
+  pyautogui.move(0, k)  #move to 7
+  KeyPress(KEYS['F'])
+  pyautogui.move(k, 0)  #move to 8
+  KeyPress(KEYS['F'])
+  
+  center_mouse()
 
 
 #Use Exhaust
 def use_exhaust():
-  KeyPress(KEYS['F'])
+  center_mouse()
+  k = 200
+  
+  KeyPress(KEYS['D'])
+  pyautogui.move(k, k)  #move to 9
+  KeyPress(KEYS['D'])
+  pyautogui.move(0, -k) #move to 6
+  KeyPress(KEYS['D'])
+  pyautogui.move(0, -k) #move to 3
+  KeyPress(KEYS['D'])
+  pyautogui.move(-k, 0) #move to 2
+  KeyPress(KEYS['D'])
+  pyautogui.move(-k, 0) #move to 1
+  KeyPress(KEYS['D'])
+  pyautogui.move(0, k)  #move to 4
+  KeyPress(KEYS['D'])
+  pyautogui.move(0, k)  #move to 7
+  KeyPress(KEYS['D'])
+  pyautogui.move(k, 0)  #move to 8
+  KeyPress(KEYS['D'])
+  
+  center_mouse()
 
 
 #Use Heal (Summoner)
 def use_heal_sum():
+  center_mouse()
   KeyPress(KEYS['D'])
   
   
 #Use a stealth ward
 def place_stealthward():
+  center_mouse()
   KeyPress(KEYS['4'])
   
   
@@ -112,7 +174,7 @@ def use_redemption():
   
   
 #Be Toxic
-toxic_phrases = ['GGEZ', 'Git gud', 'sup diff', 'GG uninstall', 'EZ uninstall', 'Noobs', 'ggez', 'sup gap']
+toxic_phrases = ['GGEZ', 'Git gud', 'sup diff', 'GG uninstall', 'EZ uninstall', 'Noobs', 'ggez', 'sup gap', 'jg diff', 'ff15']
 toxic_len = len(toxic_phrases) - 1
 
 def being_toxic():
