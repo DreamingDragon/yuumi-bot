@@ -2,6 +2,7 @@ import pyautogui
 from keystrokes import *
 import time
 import random
+import mouse
 
 KEYS = {'R':0x13,
         'E':0x12,
@@ -10,6 +11,7 @@ KEYS = {'R':0x13,
         'B':0x30,
         'D':0x20,
         'F':0x21,
+        'P':0x19,
         'Enter':0x1C,
         'Ctrl':0x1D,
         '4':0x05}
@@ -28,7 +30,9 @@ DIRECTIONS = { 'dir_one': [1400, 56],
                'dir_nine': [0, 500],
                'dir_ten': [195, 200],
                'dir_eleven': [520 , 56],
-               'dir_twelve': [960, 0],}
+               'dir_twelve': [960, 0],
+               'shop_search': [330, 188],
+               'search_result': [330, 268]}
 
 #Level up an ability
 def level_up(ability):
@@ -92,8 +96,17 @@ def use_ult(direction):
   
 #Buy Items
 def go_shopping():
-  return 0
-  
+  KeyPress(KEYS['P'])
+  pyautogui.moveTo(DIRECTIONS['shop_search'][COORD_X], DIRECTIONS['shop_search'][COORD_Y])
+  mouse.click('left')
+  time.sleep(.01)
+  pyautogui.moveTo(DIRECTIONS['search_result'][COORD_X], DIRECTIONS['search_result'][COORD_Y])
+  time.sleep(.01)
+  mouse.click('left')
+  time.sleep(.01)
+  mouse.click('left')
+  time.sleep(.01)
+  KeyPress(KEYS['P'])
   
 #Recall
 def recall():

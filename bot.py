@@ -48,6 +48,7 @@ command_level_up_r = ['**Entr0py**: Lovell, R.', '**Entr0py**: Level up, r.', '*
 command_level_up_generic = ['**Entr0py**: Level up.', '**Entr0py**: Lovell.', '**Entr0py**: Love.', '**Entr0py**: Le.', '**Entr0py**: Leve.']
 command_ignite = ['**Entr0py**: Use ignite.', '**Entr0py**: Ignite.']
 command_exhaust = ['**Entr0py**: Use exhaust.', '**Entr0py**: Exhaust.']
+command_shop = ['**Entr0py**: Go shopping.', '**Entr0py**: Go buy.', '**Entr0py**: Go shop.', '**Entr0py**: Buy items.']
 debug_center = ['**Entr0py**: Center mouse.']
 
 @client.event
@@ -240,6 +241,11 @@ async def on_message(message):
     if message.content in command_ward:
         place_stealthward()
         response = 'Placing Stealth Ward'
+        await message.channel.send(response)    
+    
+    if message.content in command_shop:
+        go_shopping()
+        response = 'Cha-Ching $$$'
         await message.channel.send(response)    
     
     if message.content in command_toxic:

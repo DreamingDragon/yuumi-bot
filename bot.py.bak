@@ -48,6 +48,7 @@ command_level_up_r = ['**Entr0py**: Lovell, R.', '**Entr0py**: Level up, r.', '*
 command_level_up_generic = ['**Entr0py**: Level up.', '**Entr0py**: Lovell.', '**Entr0py**: Love.', '**Entr0py**: Le.', '**Entr0py**: Leve.']
 command_ignite = ['**Entr0py**: Use ignite.', '**Entr0py**: Ignite.']
 command_exhaust = ['**Entr0py**: Use exhaust.', '**Entr0py**: Exhaust.']
+command_shop = ['**Entr0py**: Go shopping.', '**Entr0py**: Go buy.', '**Entr0py**: Go shop.', '**Entr0py**: Buy items.']
 debug_center = ['**Entr0py**: Center mouse.']
 
 @client.event
@@ -220,6 +221,16 @@ async def on_message(message):
     if message.content in command_r_12:
         use_ult('dir_twelve')
         response = 'R towards 12'
+        await message.channel.send(response)
+    
+    if message.content in command_ignite:
+        use_ignite()
+        response = 'Igniting'
+        await message.channel.send(response)
+    
+    if message.content in command_exhaust:
+        use_exhaust()
+        response = 'Exhausting'
         await message.channel.send(response)
     
     if message.content in command_recall:
