@@ -96,7 +96,6 @@ def use_ult(direction):
   pyautogui.moveTo(DIRECTIONS[direction][COORD_X], DIRECTIONS[direction][COORD_Y])
   KeyPress(KEYS['R'])
   time.sleep(.05)
-  center_mouse()
   
 #Buy Items
 def go_shopping():
@@ -209,9 +208,9 @@ quotes_len = len(quotes) - 1
 
 def chitchat():
   KeyPress(KEYS['Enter'])
-  time.sleep(0.01)
+  time.sleep(0.03)
   pyautogui.write(quotes[random.randint(0,quotes_len)])
-  time.sleep(0.01)
+  time.sleep(0.03)
   KeyPress(KEYS['Enter'])
   
   
