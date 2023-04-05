@@ -51,6 +51,8 @@ command_ignite = ["IGNITE"]
 command_exhaust = ["EXHAUST"]
 command_shop = ['**Entr0py**: Go shopping.', '**Entr0py**: Go buy.', '**Entr0py**: Go shop.', '**Entr0py**: Buy items.']
 debug_center = ["CENTER MOUSE"]
+command_lockcam = ["LOCK SCREEN"]
+
 
 @client.event
 async def on_ready():
@@ -69,8 +71,13 @@ async def on_message(message):
     #debug
     print(processedCommandTuple)
     
-    if processedCommandTuple[1] < 1:
+    if processedCommandTuple[1] < .37:
         processedCommand = processedCommandTuple[0]
+        
+        if processedCommand in command_lockcam:
+            lock_cam()
+            responce = 'Locking camera'
+            await message.channel.send(responce)
         
         if processedCommand in command_level_up_q:
             level_up('Q')

@@ -12,6 +12,7 @@ KEYS = {'R':0x13,
         'D':0x20,
         'F':0x21,
         'P':0x19,
+        'Y':0x15,
         'Enter':0x1C,
         'Ctrl':0x1D,
         '4':0x05}
@@ -43,6 +44,9 @@ def level_up(ability):
   ReleaseKey(KEYS['Ctrl'])
   time.sleep(.01)  
   
+#Lock the Camera
+def lock_cam():
+  KeyPress(KEYS['Y'])
   
 #Use Q
 def use_q(direction):

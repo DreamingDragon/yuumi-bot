@@ -3,6 +3,8 @@ from sklearn.metrics.pairwise import cosine_similarity
 from scipy import spatial
 import re
 
+MAX_INT = 100
+
 vecFile = open("cmudict-0.7b-simvecs", "r")
 fileLines = vecFile.readlines()
 global vectorDict 
@@ -76,7 +78,25 @@ commandDict["LEVEL ALT"] = vectorDict["LEVEL"] + vectorDict["ALT"]
 commandDict["LEVEL UP"] = vectorDict["LEVEL"] + vectorDict["UP"]
 commandDict["IGNITE"] = vectorDict["IGNITE"]
 commandDict["EXHAUST"] = vectorDict["EXHAUST"]
+commandDict["LOCK SCREEN"] = vectorDict["LOCK"] + vectorDict["SCREEN"]
 
+#QoL - Null commands
+commandDict["ONE"] = vectorDict["ONE"]
+commandDict["TWO"] = vectorDict["TWO"]
+commandDict["THREE"] = vectorDict["THREE"]
+commandDict["FOUR"] = vectorDict["FOUR"]
+commandDict["FIVE"] = vectorDict["FIVE"]
+commandDict["SIX"] = vectorDict["SIX"]
+commandDict["SEVEN"] = vectorDict["SEVEN"]
+commandDict["EIGHT"] = vectorDict["EIGHT"]
+commandDict["NINE"] = vectorDict["NINE"]
+commandDict["TEN"] = vectorDict["TEN"]
+commandDict["ELEVEN"] = vectorDict["ELEVEN"]
+commandDict["TWELVE"] = vectorDict["TWELVE"]
+commandDict["Q"] = vectorDict["Q"]
+commandDict["R"] = vectorDict["R"]
+
+nullCommands = ["ONE", "TWO", "THREE", "FOUR", "FIVE", "SIX", "SEVEN", "EIGHT", "NINE", "TEN", "ELEVEN", "TWELVE", "R", "Q"]
 
 def phonetic_approximant(recievedString):
     recievedString = recievedString.upper()
@@ -84,7 +104,7 @@ def phonetic_approximant(recievedString):
     #debug
     print(splitString)
     indexEnd = len(splitString) - 1
-    splitString[indexEnd] = splitString[indexEnd].rstrip(".")
+    #splitString[indexEnd] = splitString[indexEnd].rstrip(".")
     splitString.pop(0) #Pop the Author
     splitString.pop(0) #Pop the Space ''
     recievedVector = np.zeros(50)
@@ -92,16 +112,22 @@ def phonetic_approximant(recievedString):
     matchingCommand = ""
     
     for word in splitString:
-        wordVector = vectorDict[word]
-        recievedVector = np.add(recievedVector, wordVector)
-    
+        print(word)
+        word = word.rstrip(".,-")
+        if word in vectorDict:
+            wordVector = vectorDict[word]
+            recievedVector = np.add(recievedVector, wordVector)
+        
     for key in commandDict:
         commandVector = commandDict[key]
         cos_sim = spatial.distance.cosine(recievedVector, commandVector)
         if cos_sim < smallest_cos_sim:
             smallest_cos_sim = cos_sim
             matchingCommand = key
-            
+    
+
+    if matchingCommand in nullCommands:
+        smallest_cos_sim = MAX_INT
     return (matchingCommand, smallest_cos_sim)
     
     
